@@ -1,0 +1,32 @@
+body {
+    padding: 0;
+}
+
+h1 {
+    font-family: 'Climate Crisis', cursive;
+}
+
+p{
+    font-family: 'Titillium Web', sans-serif;
+}
+
+
+label{
+    font-family: 'Titillium Web', sans-serif;
+}
+
+button{
+    background-color: white;
+    border-radius: 0.2em;
+    border-width: 0.1em;
+    font-size: large;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+input{
+    background-color: white;
+    border-radius: 0.2em;
+    border-width: 0.1em;
+    font-size: large;
+    font-family: 'Titillium Web', sans-serif;
+}

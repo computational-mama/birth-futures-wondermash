@@ -30,10 +30,16 @@ async function sendData(prompt1, prompt2) {
         return response.text();
     }).then(data => {
         console.log(data)
-        let c_data = data.replace(/"/g, '');
-        var aimg = document.getElementById("addimage");
-        aimg.src = c_data
-        document.getElementById('imagepush').appendChild(aimg);
+        if(data!= ""){
+            let c_data = data.replace(/"/g, '');
+            var aimg = document.getElementById("addimage");
+            aimg.src = c_data
+            document.getElementById('imagepush').appendChild(aimg);
+        } else {
+            const t = document.createElement('p')
+            t.innerHTML('loading...')
+        }
+       
         //   return data;
     }).catch(ex => {
         console.error(ex);
