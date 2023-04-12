@@ -1,9 +1,11 @@
 
 
-var form = document.getElementById("promptform");
+var loader = document.getElementById("lds-ellipsis");
+// loader.style.display = "none"
 function submitMe() {
     // form.submit();
     // console.log(form)
+    loader.style.display = "inline-block"
     var prompting1 = document.getElementById("prompt1").value
     var prompting2 = document.getElementById("prompt2").value
     console.log(prompting1,prompting2)
@@ -30,6 +32,7 @@ async function sendData(prompt1, prompt2) {
         return response.text();
     }).then(data => {
         console.log(data)
+        loader.style.display = "none"
         if(data!= ""){
             let c_data = data.replace(/"/g, '');
             var aimg = document.getElementById("addimage");
