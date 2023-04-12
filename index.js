@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import  express from 'express';
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config()
-
+const port = process.env.PORT || "8080";
 var app = express()
 // For parsing application/json
 app.use(express.json());
@@ -45,7 +45,7 @@ app.post('/api', (request, response, next) => {
   
   })
  // Server setup
- app.listen(4000 , ()=>{
+ app.listen(port , ()=>{
      console.log("server running");
  });
 
