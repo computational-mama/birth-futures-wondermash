@@ -22,11 +22,13 @@ async function sendData(prompt1, prompt2) {
         "p1" : prompt1,
         "p2" : prompt2
      };
+     
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(promptdata)
     };
+
     fetch('/api', options).then(response => {
         console.log(response)
         return response.text();

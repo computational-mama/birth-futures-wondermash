@@ -42,7 +42,8 @@ appExpress.post("/api", (request, response, next) => {
     .then((data) => {
       var JSONdata = JSON.stringify(data.output.output_images.protogen_5_3[0]);
       writeNewPost(fullprompt, JSONdata);
-      console.log(fullprompt, JSONdata);
+      // console.log(fullprompt, JSONdata);
+      // response.send()
       response.send(JSONdata);
       return;
     })
@@ -92,6 +93,8 @@ import {
   push,
   update,
   onValue,
+  orderByKey,
+  query,
 } from "firebase/database";
 import { updateDoc, serverTimestamp } from "firebase/firestore";
 
@@ -134,23 +137,28 @@ function writeNewPost(prompt, link) {
   const updates = {};
   updates["/runs/mothers/" + newPostKey] = postData;
   // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-  console.log();
-  // getLink(newPostKey);
+  // console.log(postData);
+  // getLink();
   return update(ref(db), updates);
 }
 
-// function getLink(key) {
-//   const db = getDatabase();
-//   const dbRef = ref(db, "/runs/mothers/" + key);
+//-NSu006ti4tsqcOC4z3I
 
-//   onValue(
-//     dbRef,
-//     (snapshot) => {
-//       console.log(snapshot.val().link);
-//       return snapshot.val().link;
-//     },
-//     {
-//       onlyOnce: true,
-//     }
-//   );
-// }
+appExpress.post("/gallery", (req, res, next) => {
+  function getList() {
+    const db = getDatabase();
+    return onValue(
+      ref(db, "/runs/mothers"),
+      (snapshot) => {
+        const list = snapshot.val();
+        // console.log(list)
+        res.send(list);
+        // ...
+      },
+      {
+        onlyOnce: true,
+      }
+    );
+  }
+  getList();
+});

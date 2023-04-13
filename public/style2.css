@@ -809,3 +809,21 @@ nav ul li {
     padding-top: 4vh !important;
   }
 
+#gallerypush{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+
+#gallerypush img{
+  width:30ch;
+  padding: 1rem;
+}
+
+#gallery {
+  width: 100%;
+  max-width: 150ch;
+  margin-right: auto;
+  margin-left: auto;
+}
