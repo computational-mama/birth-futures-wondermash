@@ -1,6 +1,8 @@
 import fetch from "node-fetch";
 import express from "express";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import fs from "fs";
+
 dotenv.config();
 const port = process.env.PORT || "8080";
 var appExpress = express();
@@ -11,6 +13,19 @@ appExpress.use(express.json());
 appExpress.use(express.urlencoded({ extended: true }));
 
 var image_link;
+var story_output;
+
+
+try {  
+    // Intitializing the readFileLines with filename
+    var promptGTP3 = fs.readFileSync('gptprompt.txt', 'utf8');
+
+    // Printing the response
+    // console.log(promptGTP3.toString());    
+}catch(e) {
+    // Printing error 
+    console.log('Error:', e.stack);
+}
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -82,6 +97,26 @@ async function callApi(p1, p2) {
   // console.log(response.status, image_link);
   return data;
 }
+
+async function callGPT3() {
+  const response = await fetch("https://api.gooey.ai/v2/CompareLLM/", {
+    method: "POST",
+    headers: {
+        "Authorization": "Bearer "+ process.env.GOOEY_API_KEY,
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "input_prompt": promptGTP3.toString()
+    }),
+  });
+
+  const dataprompt = await response.json();
+  story_output = dataprompt.output.output_text.text_davinci_003[0];
+  console.log(response.status, story_output);
+}
+
+callGPT3();
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
