@@ -1,30 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Titillium+Web:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    <title>Document</title>
-</head>
-<body>
-    <h1>ARCHIVE OF LOST MOTHERS</h1>
-    <div id="promptform">
-        <label>an archival photograph of a tired young indian mother with</label>
-        <input type="text" placeholder="tentacles/cat ears/robotic arms" id="prompt1">
-        <label>, in the background there is a </label>
-        <input type="text" placeholder="glass birthing pod/medical equipment" id="prompt2">
-        <label>inside a bombay hospital</label><br>
-        <br>
-        <button onclick="submitMe()"  id="submit">Make</button>
-    </div>
-    <div id="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-    <div id="imagepush">
-        <img src="" alt="" id="addimage">
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" type="text/css" href="/style1.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/style2.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Titillium+Web:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>ARCHIVE OF LOST MOTHERS</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/site.webmanifest" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <header>
+      <div class="container">
+        <h1>ARCHIVE OF LOST MOTHERS</h1>
+        <!-- <h2>SUBTITLE about the project</h2> -->
+        
+      
+        <article id="about">
+            <p>An archive emerges of a secret scientific society that suppressed radical new birthing, new womxn beings developing limbs and post human babies. They were hidden in a secret facility so their birthing prowess could be watched and monitored. Their bodies, their offspring and their energies deleted from the popular imagination.
+            </p>
+            <p>-----</p>
+              <h2>INSTRUCTIONS</h2>
+              <p id="instructions">The archive has a lot of images, you can find images by adding some trying some evolutionary keywords and some medical contexts. You need to add keywords in both input fields for the search to throw up an image.</p>
+       </article>
+      </div>
+    </header>
+
+    <main id="main" tabIndex="-1">
+
+      <div class="container">
+        <article id="promptform">
+            <div class="container">
+                <h3>FIND AN IMAGE</h3>
+                <label
+                >an archival photograph of a patient
+                with</label
+              >
+              <input
+                type="text"
+                placeholder="tentacles/cat ears/robotic arms"
+                id="prompt1"
+              />
+              <label>, in the background there is a </label>
+              <input
+                type="text"
+                placeholder="glass birthing pod/medical equipment"
+                id="prompt2"
+              />
+              <label>inside a bombay hospital</label><br />
+              <br />
+              <button class="link-allstyles" onclick="submitMe()" id="submit">
+                Find
+              </button>
+              <br>
+            <div id="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+  
+              <div id="imagepush" class="container">
+                <img src="" alt="" id="addimage" />
+              </div>
+            </div>
+
+        </div>
+        </article>
+      </div>
+    </main>
+    <nav>
+      <ul>
+        <!-- <li><a href="#about">About</a></li> -->
+        <li><a href="/gallery">Gallery</a></li>
+      </ul>
+    </nav>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
