@@ -280,9 +280,9 @@ header h1 {
           box-shadow: 0.1em 0.1em var(--color-secondary);
   place-content: center;
 }
-header h2 {
-  /* max-width: 30ch; */
-}
+/* header h2 {
+max-width: 30ch; 
+} */
 header p {
     max-width: 70ch;
   }
