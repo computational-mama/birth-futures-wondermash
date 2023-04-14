@@ -32,21 +32,31 @@ async function sendData(prompt1, prompt2) {
     fetch('/api', options).then(response => {
         console.log(response)
         return response.text();
-    }).then(data => {
-        console.log(data)
-        loader.style.display = "none"
-        if(data!= ""){
-            let c_data = data.replace(/"/g, '');
+    })
+     .then(data => {
+         // console.log(data)
+         const obj = JSON.parse(data)
+         loader.style.display = "none"
+         if(obj !== ""){
+            console.log(obj.imagelink)
+            let c_data = obj.imagelink.replace(/"/g, '');
             var aimg = document.getElementById("addimage");
             aimg.src = c_data
             document.getElementById('imagepush').appendChild(aimg);
-        } else {
-            const t = document.createElement('p')
-            t.innerHTML('loading...')
+
+            let cap_data = obj.caption.replace(/"/g, '');
+            var acap = document.getElementById("addtext");
+            acap.innerHTML = cap_data
+            document.getElementById('imagepush').appendChild(acap);
         }
+        // else {
+        //     const t = document.createElement('p')
+        //     t.innerHTML('loading...')
+        // }
        
-        //   return data;
-    }).catch(ex => {
+    //     //   return data;
+    })
+    .catch(ex => {
         console.error(ex);
     })
 

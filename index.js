@@ -1,8 +1,9 @@
 import fetch from "node-fetch";
-import express from "express";
-import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import fs from "fs";
 
+import express from "express";
+import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+// import * as "gpt.js"
 dotenv.config();
 const port = process.env.PORT || "8080";
 var appExpress = express();
@@ -14,18 +15,21 @@ appExpress.use(express.urlencoded({ extended: true }));
 
 var image_link;
 var story_output;
-
+var instruction;
 
 try {  
-    // Intitializing the readFileLines with filename
-    var promptGTP3 = fs.readFileSync('gptprompt.txt', 'utf8');
+  // Intitializing the readFileLines with filename
+  var promptGTP3 = fs.readFileSync('gptprompt.txt', 'utf8');
 
-    // Printing the response
-    // console.log(promptGTP3.toString());    
+  // Printing the response
+  // console.log(promptGTP3.toString());    
 }catch(e) {
-    // Printing error 
-    console.log('Error:', e.stack);
+  // Printing error 
+  console.log('Error:', e.stack);
 }
+// const p1 = "cat ears"
+// const p2 = "fishing tank"
+
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -41,9 +45,17 @@ appExpress.post("/api", (request, response, next) => {
   const text2img = request.body;
   let prompt1 = text2img.p1;
   let prompt2 = text2img.p2;
-  console.log(prompt1, prompt2);
+  // console.log(prompt1, prompt2);
   // next();
   var outputimage = callApi(prompt1, prompt2);
+  var gptResponse
+  var gptCall = callGPT3(prompt1, prompt2).then((dataprompt) => {
+    gptResponse = dataprompt.output.output_text.text_davinci_003[0];
+  }).catch((err) => {
+    console.error(err);
+  });
+
+  // console.log("gptCall: "+gptResponse)
   var fullprompt =
     "an archival photograph of a tired ((young)) indian (((mother))) with" +
     prompt1 +
@@ -55,21 +67,50 @@ appExpress.post("/api", (request, response, next) => {
   // console.log(outputimage);
   outputimage
     .then((data) => {
-      var JSONdata = JSON.stringify(data.output.output_images.protogen_5_3[0]);
-      writeNewPost(fullprompt, JSONdata);
+      var JSONdata =data.output.output_images.protogen_5_3[0];
+      writeNewPost(fullprompt, JSONdata, gptResponse);
       // console.log(fullprompt, JSONdata);
-      // response.send()
-      response.send(JSONdata);
+      // console.log(story_output)
+      // response.send(gptResponse)
+      response.send({
+        imagelink:JSONdata,
+        caption: gptResponse
+      });
       return;
     })
     .catch((err) => {
       console.error(err);
     });
+
 });
 // Server setup
 appExpress.listen(port, () => {
   console.log("server running");
 });
+
+async function callGPT3(p1,p2) {
+  const instruction = "Create one more story like these above make sure to use smaller Indian cities and villages in the geography. Story must include an extraordinary human evolution with"+p1+  "during, before or after pregnancy and it must include one sentence about"+p2+ "Do not write stories about other medical ailments. Story can be very negative or very positive."
+  const response = await fetch("https://api.gooey.ai/v2/CompareLLM/", {
+    method: "POST",
+    headers: {
+        "Authorization": "Bearer "+ process.env.GOOEY_API_KEY,
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "input_prompt": promptGTP3.toString() + instruction,
+      "selected_models": [
+          "text_davinci_003"
+          ],
+      "avoid_repetition": true,
+
+    }),
+  });
+
+  const dataprompt = await response.json();
+  // const story_output =  dataprompt.output.output_text.text_davinci_003[0]
+  // console.log(JSON.stringify(story_output));
+  return dataprompt
+}
 
 async function callApi(p1, p2) {
   const response = await fetch("https://api.gooey.ai/v2/CompareText2Img/", {
@@ -97,25 +138,6 @@ async function callApi(p1, p2) {
   // console.log(response.status, image_link);
   return data;
 }
-
-async function callGPT3() {
-  const response = await fetch("https://api.gooey.ai/v2/CompareLLM/", {
-    method: "POST",
-    headers: {
-        "Authorization": "Bearer "+ process.env.GOOEY_API_KEY,
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      "input_prompt": promptGTP3.toString()
-    }),
-  });
-
-  const dataprompt = await response.json();
-  story_output = dataprompt.output.output_text.text_davinci_003[0];
-  console.log(response.status, story_output);
-}
-
-callGPT3();
 
 
 // Import the functions you need from the SDKs you need
@@ -153,9 +175,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-function writeNewPost(prompt, link) {
+function writeNewPost(prompt, link, caption) {
   const db = getDatabase();
-  const caption = "test";
+  // const caption = "test";
+  // console.log("caption "+caption)
+  // console.log("link "+link)
   // A post entry.
   const postData = {
     caption: caption,
