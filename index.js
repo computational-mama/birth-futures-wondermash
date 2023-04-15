@@ -37,6 +37,7 @@ function getRandomInt(max) {
 
 // callApi();
 appExpress.use(express.static("public"));
+appExpress.use(express.static("src"));
 
 appExpress.post("/api", (request, response, next) => {
   console.log("i got a request");
@@ -89,7 +90,7 @@ appExpress.listen(port, () => {
 });
 
 async function callGPT3(p1,p2) {
-  const instruction = "Create one more story like these above make sure to use smaller Indian cities and villages in the geography. Story must include an extraordinary human evolution with"+p1+  "during, before or after pregnancy and it must include one sentence about"+p2+ "Do not write stories about other medical ailments. Story can be very negative or very positive."
+  const instruction = "Create one more medical notes like these above make sure to use smaller Indian cities and villages in the geography. Story must include an extraordinary human evolution with"+p1+  "during, before or after pregnancy and it must include one sentence about"+p2+ "Do not write stories about other medical ailments. Story should have no ending as these are medical notes from patient files and there is should be NO conclusions like 'the baby was delivered safely' or 'they went back home happily'."
   const response = await fetch("https://api.gooey.ai/v2/CompareLLM/", {
     method: "POST",
     headers: {
