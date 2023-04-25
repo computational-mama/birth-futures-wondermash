@@ -37,6 +37,7 @@ function getRandomInt(max) {
 
 // callApi();
 appExpress.use(express.static("public"));
+appExpress.use(express.static("src"));
 
 appExpress.post("/api", (request, response, next) => {
   console.log("i got a request");
