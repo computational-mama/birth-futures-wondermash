@@ -10,10 +10,10 @@ fetch("/gallery", options)
     return response.text();
   })
   .then((data) => {
-    // console.log(data)
     const obj = JSON.parse(data);
+    console.log(obj)
     Object.keys(obj).forEach((key) => {
-        if (obj[key].caption !== "test" && obj[key].caption !== undefined){
+  
       let link = obj[key].link;
       console.log(link)
       let c_data = link.replace(/"/g, "");
@@ -47,7 +47,7 @@ fetch("/gallery", options)
       span.onclick = function () {
         modal.style.display = "none";
       };
-    }
+    
     });
 
     //   return data;

@@ -203,10 +203,10 @@ appExpress.post("/gallery", (req, res, next) => {
   function getList() {
     const db = getDatabase();
     return onValue(
-      ref(db, "/runs/mothers"),
+      ref(db, "/runs/births"),
       (snapshot) => {
         const list = snapshot.val();
-        // console.log(list)
+        console.log(list)
         res.send(list);
         // ...
       },
