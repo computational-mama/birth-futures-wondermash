@@ -58,11 +58,11 @@ appExpress.post("/api", (request, response, next) => {
 
   // console.log("gptCall: "+gptResponse)
   var fullprompt =
-  "a snapshot photo of a tired, young Dutch person giving birth in a (((" +
+  "a snapshot photo of a tired, young Dutch (((" +
   prompt1 +
-  "))),  inside a futuristic birthing centre, in the presence of  ((" +
+  "))), giving birth in a (("  +
   prompt2 +
-  ")) realistic, intricate details, polaroid, retro-futurism";
+  ")), futuristic birthing centre, realistic, intricate details, polaroid, retro-futurism";
   // console.log(outputimage);
   outputimage
     .then((data) => {
@@ -121,11 +121,11 @@ async function callApi(p1, p2) {
     body: JSON.stringify({
       seed: getRandomInt(24061988),
       text_prompt:
-        "a snapshot photo of a tired, young Dutch person giving birth in a" +
+        "a snapshot photo of a tired, young Dutch " +
         p1 +
-        "))),  inside a futuristic birthing centre, in the presence of  ((" +
+        "))), giving birth in a ((" +
         p2 +
-        ")) realistic, intricate details, polaroid, retro-futurism",
+        ")) futuristic birthing centre, realistic, intricate details, polaroid, retro-futurism",
       negative_prompt: "out of frame, old, older woman, modelshoot, black and white, ilford, grainy",
     }),
   });

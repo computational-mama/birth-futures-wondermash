@@ -6,16 +6,16 @@ const options = {
 
 fetch("/gallery", options)
   .then((response) => {
-    console.log(response);
+    // console.log(response);
     return response.text();
   })
   .then((data) => {
     const obj = JSON.parse(data);
-    console.log(obj)
+    // console.log(obj)
     Object.keys(obj).forEach((key) => {
   
       let link = obj[key].link;
-      console.log(link)
+      // console.log(link)
       let c_data = link.replace(/"/g, "");
       var aimg = document.createElement("img");
       aimg.src = c_data;
