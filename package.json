@@ -1,7 +1,7 @@
 {
-  "name": "lost-mothers",
+  "name": "birth-futures",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "npx nodemon index.js",
@@ -15,5 +15,27 @@
     "node-fetch": "^3.3.1",
     "nodemon": "^2.0.22",
     "serverless-http": "^3.2.0"
-  }
+  },
+  "description": "Steps on how to set up fly.io deploy on a custom domain",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/computational-mama/birth-futures-wondermash.git"
+  },
+  "keywords": [
+    "birth",
+    "futures",
+    "AI",
+    "generative",
+    "AI",
+    "GPT3",
+    "Stable",
+    "Diffussion"
+  ],
+  "author": "computational-mama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/computational-mama/birth-futures-wondermash/issues"
+  },
+  "homepage": "https://github.com/computational-mama/birth-futures-wondermash#readme"
 }

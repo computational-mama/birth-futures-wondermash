@@ -15,6 +15,7 @@ fetch("/gallery", options)
     Object.keys(obj).forEach((key) => {
         if (obj[key].caption !== "test" && obj[key].caption !== undefined){
       let link = obj[key].link;
+      console.log(link)
       let c_data = link.replace(/"/g, "");
       var aimg = document.createElement("img");
       aimg.src = c_data;

@@ -58,13 +58,11 @@ appExpress.post("/api", (request, response, next) => {
 
   // console.log("gptCall: "+gptResponse)
   var fullprompt =
-    "an archival photograph of a tired ((young)) indian (((mother))) with" +
-    prompt1 +
-    ", in the background there is" +
-    "(" +
-    prompt2 +
-    ")" +
-    "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print";
+  "a snapshot photo of a tired, young Dutch person giving birth in a (((" +
+  prompt1 +
+  "))),  inside a futuristic birthing centre, in the presence of  ((" +
+  prompt2 +
+  ")) realistic, intricate details, polaroid, retro-futurism";
   // console.log(outputimage);
   outputimage
     .then((data) => {
@@ -121,14 +119,14 @@ async function callApi(p1, p2) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      seed: getRandomInt(3008484884),
+      seed: getRandomInt(24061988),
       text_prompt:
-        "an archival photograph of a tired ((young)) indian (((mother))) with (((" +
+        "a snapshot photo of a tired, young Dutch person giving birth in a" +
         p1 +
-        "))), in the background there is ((" +
+        "))),  inside a futuristic birthing centre, in the presence of  ((" +
         p2 +
-        ")) inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print",
-      negative_prompt: "out of frame, old, older woman, modelshoot",
+        ")) realistic, intricate details, polaroid, retro-futurism",
+      negative_prompt: "out of frame, old, older woman, modelshoot, black and white, ilford, grainy",
     }),
   });
   // console.log("an archival photograph of a tired ((young)) indian (((mother))) with" + p1 +", in the background there is" + +p2 + "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print")
@@ -161,14 +159,13 @@ import { updateDoc, serverTimestamp } from "firebase/firestore";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API,
-  authDomain: "archive-lost-mothers.firebaseapp.com",
-  projectId: "archive-lost-mothers",
-  storageBucket: "archive-lost-mothers.appspot.com",
-  messagingSenderId: "292387369053",
-  appId: "1:292387369053:web:a4795e1310d4b651881db4",
-  measurementId: "G-Z420Y6VGSP",
-  databaseURL:
-    "https://archive-lost-mothers-default-rtdb.asia-southeast1.firebasedatabase.app",
+  authDomain: "wondermash-birth-futures.firebaseapp.com",
+  databaseURL: "https://wondermash-birth-futures-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "wondermash-birth-futures",
+  storageBucket: "wondermash-birth-futures.appspot.com",
+  messagingSenderId: "222696635206",
+  appId: "1:222696635206:web:f40a67b9c5715390908347",
+  measurementId: "G-M6NEWPT90M"
 };
 
 // Initialize Firebase
@@ -188,14 +185,14 @@ function writeNewPost(prompt, link, caption) {
   };
 
   // Get a key for a new Post.
-  const newPostKey = push(child(ref(db), "runs/mothers")).key;
+  const newPostKey = push(child(ref(db), "runs/births")).key;
   // console.log(newPostKey)
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
-  updates["/runs/mothers/" + newPostKey] = postData;
+  updates["/runs/births/" + newPostKey] = postData;
   // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-  // console.log(postData);
+  console.log(postData);
   // getLink();
   return update(ref(db), updates);
 }
