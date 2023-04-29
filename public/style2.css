@@ -12,7 +12,7 @@
 * @link https://stylestage.dev/styles/simple-blue-roboto/
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,400;0,600;1,400;1,600&display=swap");
 :root {
   --color-primary: #292b2c;
   --color-primary-alt: #f44336;
@@ -21,8 +21,8 @@
   --color-text: #1a252a;
   --color-light: #fff;
   --color-anchor: #292b2c;
-  --font-family: "Roboto", sans-serif;
-  --font-weight-strong: 500;
+  --font-family:  'IBM Plex Serif', serif;
+  --font-weight-strong: 600;
   --font-size-h1: 3rem;
   --font-size-h2: 1.7rem;
   --font-size-h3: 1rem;
@@ -105,6 +105,7 @@ h4 {
 
 h1 {
   font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-strong);
   font-size: clamp(2rem, 7vw, var(--font-size-h1));
 }
 
@@ -276,9 +277,9 @@ header h1 {
   display: inline-grid;
   min-height: var(--logomark-height);
   padding: var(--logomark-padding);
-  border: 0.12em solid var(--color-primary);
-  -webkit-box-shadow: 0.1em 0.1em var(--color-secondary);
-          box-shadow: 0.1em 0.1em var(--color-secondary);
+  border: 0.12em solid var(--color-secondary);
+  -webkit-box-shadow: 0.1em 0.2em var(--color-secondary);
+          box-shadow: 0.1em 0.21em var(--color-secondary);
   place-content: center;
 }
 /* header h2 {

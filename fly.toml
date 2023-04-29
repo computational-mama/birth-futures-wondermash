@@ -1,0 +1,16 @@
+# fly.toml app configuration file generated for birth-futures-wondermash on 2023-04-29T20:51:40+05:30
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "birth-futures-wondermash"
+primary_region = "ams"
+
+[env]
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
