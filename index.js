@@ -88,7 +88,7 @@ appExpress.listen(port, () => {
 });
 
 async function callGPT3(p1,p2) {
-  const instruction = "Create one more story like these above make sure to use smaller Indian cities and villages in the geography. Story must include an extraordinary human evolution with "+p1+  " during, before or after pregnancy and it must include one sentence about "+p2+ ". Do not write stories about other medical ailments. Story can be very negative or very positive."
+  const instruction = "Create one more story like these above make sure to use only Dutch cities and villages in the geography. Story must include an extraordinary human evolution with "+p1+  " during, before or after pregnancy and it must include one sentence about "+p2+ ". Do not write stories about other medical ailments. Story can be very negative or very positive."
   const response = await fetch("https://api.gooey.ai/v2/CompareLLM/", {
     method: "POST",
     headers: {
